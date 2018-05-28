@@ -1,0 +1,22 @@
+{
+    "name": "gabriel/multiples",
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "description": "",
+    "authors": [
+        {
+            "name": "Gabriel Portes",
+            "email": "gabrielportesv@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Gabriel\\Multiples\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
