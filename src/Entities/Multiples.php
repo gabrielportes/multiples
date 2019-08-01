@@ -10,16 +10,15 @@ class Multiples
 	];
 	
     /**
-     * print all numbers from 1 to $to
+     * Print all numbers from 1 to $to
      * 
      * @param int $to last number to print
      */
 	public function printNumbers(int $to)
 	{
-		$count = 1;
-		for ($i = 0; $i < $to; $i++) {			
-			echo self::testMultiple($count), '<br>';
-			$count++;
+		$from = 1;
+		foreach (range($from, $to) as $number) {			
+			echo self::testMultiple($number), '<br>';
 		}        
 	}
 	
@@ -27,10 +26,10 @@ class Multiples
      * Test if a number is multiple of 3, 5 or both at same time
      * 
      * @param int $number number to test
-     * @return string 
-     * - When $number is multiple of 3, returns the word "Linio" 
-	 * - When $number is multiple of 5, returns the word "IT" 
-	 * - When $number, is multiple of 3 and 5, at same time, returns the word "Linianos"
+     * @return string
+     * - When $number is multiple of 3, return the word "Linio"
+     * - When $number is multiple of 5, return the word "IT" 
+     * - When $number is multiple of 3 and 5, at same time, return the word "Linianos"
      * - Otherwise returns $number
      */
 	protected static function testMultiple(int $number): string
