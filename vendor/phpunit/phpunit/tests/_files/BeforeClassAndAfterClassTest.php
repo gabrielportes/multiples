@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 class BeforeClassAndAfterClassTest extends TestCase
 {
     public static $beforeClassWasRun = 0;
+
     public static $afterClassWasRun  = 0;
 
     public static function resetProperties(): void

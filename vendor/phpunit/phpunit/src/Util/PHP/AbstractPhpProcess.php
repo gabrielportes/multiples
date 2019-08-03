@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace PHPUnit\Util\PHP;
 
 use __PHP_Incomplete_Class;
@@ -21,7 +20,7 @@ use PHPUnit\Framework\TestResult;
 use SebastianBergmann\Environment\Runtime;
 
 /**
- * Utility methods for PHP sub-processes.
+ * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 abstract class AbstractPhpProcess
 {
@@ -57,7 +56,7 @@ abstract class AbstractPhpProcess
 
     public static function factory(): self
     {
-        if (DIRECTORY_SEPARATOR === '\\') {
+        if (\DIRECTORY_SEPARATOR === '\\') {
             return new WindowsPhpProcess;
         }
 
@@ -178,25 +177,45 @@ abstract class AbstractPhpProcess
     public function getCommand(array $settings, string $file = null): string
     {
         $command = $this->runtime->getBinary();
+
+        if ($this->runtime->hasPCOV()) {
+            $settings = \array_merge(
+                $settings,
+                $this->runtime->getCurrentSettings(
+                    \array_keys(\ini_get_all('pcov'))
+                )
+            );
+        } elseif ($this->runtime->hasXdebug()) {
+            $settings = \array_merge(
+                $settings,
+                $this->runtime->getCurrentSettings(
+                    \array_keys(\ini_get_all('xdebug'))
+                )
+            );
+        }
+
         $command .= $this->settingsToParameters($settings);
 
-        if (PHP_SAPI === 'phpdbg') {
-            $command .= ' -qrr ';
+        if (\PHP_SAPI === 'phpdbg') {
+            $command .= ' -qrr';
 
-            if ($file) {
-                $command .= '-e ' . \escapeshellarg($file);
-            } else {
-                $command .= \escapeshellarg(__DIR__ . '/eval-stdin.php');
+            if (!$file) {
+                $command .= 's=';
             }
-        } elseif ($file) {
-            $command .= ' -f ' . \escapeshellarg($file);
+        }
+
+        if ($file) {
+            $command .= ' ' . \escapeshellarg($file);
         }
 
         if ($this->args) {
-            $command .= ' -- ' . $this->args;
+            if (!$file) {
+                $command .= ' --';
+            }
+            $command .= ' ' . $this->args;
         }
 
-        if ($this->stderrRedirection === true) {
+        if ($this->stderrRedirection) {
             $command .= ' 2>&1';
         }
 
@@ -235,9 +254,14 @@ abstract class AbstractPhpProcess
                 $time
             );
         } else {
-            \set_error_handler(function ($errno, $errstr, $errfile, $errline): void {
-                throw new ErrorException($errstr, $errno, $errno, $errfile, $errline);
-            });
+            \set_error_handler(
+                /**
+                 * @throws ErrorException
+                 */
+                static function ($errno, $errstr, $errfile, $errline): void {
+                    throw new ErrorException($errstr, $errno, $errno, $errfile, $errline);
+                }
+            );
 
             try {
                 if (\strpos($stdout, "#!/usr/bin/env php\n") === 0) {
@@ -267,8 +291,8 @@ abstract class AbstractPhpProcess
                 $test->setResult($childResult['testResult']);
                 $test->addToAssertionCount($childResult['numAssertions']);
 
-                /** @var TestResult $childResult */
                 $childResult = $childResult['result'];
+                \assert($childResult instanceof  TestResult);
 
                 if ($result->getCollectCodeCoverageInformation()) {
                     $result->getCodeCoverage()->merge(

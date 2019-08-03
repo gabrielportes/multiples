@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -15,7 +15,7 @@ use SplObjectStorage;
  * Constraint that asserts that the Traversable it is applied to contains
  * a given value.
  */
-class TraversableContains extends Constraint
+final class TraversableContains extends Constraint
 {
     /**
      * @var bool
@@ -33,14 +33,10 @@ class TraversableContains extends Constraint
     private $value;
 
     /**
-     * @param mixed $value
-     *
      * @throws \PHPUnit\Framework\Exception
      */
     public function __construct($value, bool $checkForObjectIdentity = true, bool $checkForNonObjectIdentity = false)
     {
-        parent::__construct();
-
         $this->checkForObjectIdentity    = $checkForObjectIdentity;
         $this->checkForNonObjectIdentity = $checkForNonObjectIdentity;
         $this->value                     = $value;
@@ -57,7 +53,7 @@ class TraversableContains extends Constraint
             return 'contains "' . $this->value . '"';
         }
 
-        return 'contains ' . $this->exporter->export($this->value);
+        return 'contains ' . $this->exporter()->export($this->value);
     }
 
     /**

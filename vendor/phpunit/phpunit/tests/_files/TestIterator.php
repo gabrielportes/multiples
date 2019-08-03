@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -10,6 +10,7 @@
 class TestIterator implements Iterator
 {
     protected $array;
+
     protected $position = 0;
 
     public function __construct($array = [])

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -10,6 +10,7 @@
 class BeforeClassWithOnlyDataProviderTest extends \PHPUnit\Framework\TestCase
 {
     public static $setUpBeforeClassWasCalled;
+
     public static $beforeClassWasCalled;
 
     public static function resetProperties(): void

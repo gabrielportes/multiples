@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -14,9 +14,6 @@ class Calculator
      * @assert (0, 1) == 1
      * @assert (1, 0) == 1
      * @assert (1, 1) == 2
-     *
-     * @param mixed $a
-     * @param mixed $b
      */
     public function add($a, $b)
     {

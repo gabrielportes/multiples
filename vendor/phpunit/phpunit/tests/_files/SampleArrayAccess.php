@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -18,7 +18,7 @@ class SampleArrayAccess implements ArrayAccess
 
     public function offsetSet($offset, $value): void
     {
-        if (\is_null($offset)) {
+        if (null === $offset) {
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;

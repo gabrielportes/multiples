@@ -1,7 +1,7 @@
 {
     "name": "gabriel/multiples",
     "require-dev": {
-        "phpunit/phpunit": "^7.1"
+        "phpunit/phpunit": "^8"
     },
     "description": "",
     "authors": [
@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Gabriel\\Multiples\\": "src/"
+            "Multiples\\": "src/"
         }
     },
     "config": {
