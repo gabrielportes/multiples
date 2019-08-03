@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -12,23 +12,20 @@ namespace PHPUnit\Framework;
 use RecursiveIterator;
 
 /**
- * Iterator for test suites.
+ * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
-class TestSuiteIterator implements RecursiveIterator
+final class TestSuiteIterator implements RecursiveIterator
 {
     /**
      * @var int
      */
-    protected $position;
+    private $position;
 
     /**
      * @var Test[]
      */
-    protected $tests;
+    private $tests;
 
-    /**
-     * @param TestSuite $testSuite
-     */
     public function __construct(TestSuite $testSuite)
     {
         $this->tests = $testSuite->tests();

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -19,8 +19,6 @@ class DataProviderDependencyTest extends PHPUnit\Framework\TestCase
      * @see https://github.com/sebastianbergmann/phpunit/issues/1896
      * @depends testReference
      * @dataProvider provider
-     *
-     * @param mixed $param
      */
     public function testDependency($param): void
     {

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -15,8 +15,6 @@ class TestWithDataProviderTest extends TestCase
 {
     /**
      * @dataProvider provide
-     *
-     * @param mixed $x
      */
     public function testFirst($x): void
     {

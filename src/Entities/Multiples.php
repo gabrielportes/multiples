@@ -1,9 +1,10 @@
 <?php
 
-namespace Gabriel\Multiples\Entities;
+namespace Multiples\Entities;
 
 class Multiples
 {
+
 	const OPTIONS = [
 		'Linio',
 		'IT',
@@ -19,7 +20,7 @@ class Multiples
 	{
 		$from = 1;
 		foreach (range($from, $to) as $number) {
-			echo self::testMultiple($number), '<br>';
+			echo self::testMultiple($number), "\n";
 		}
 	}
 
@@ -33,7 +34,7 @@ class Multiples
 	 * - When $number is multiple of 3 and 5, at same time, return the word "Linianos"
 	 * - Otherwise returns $number
 	 */
-	protected static function testMultiple(int $number): string
+	public static function testMultiple(int $number): string
 	{
 		$mod3 = intval(bcmod($number, 3));
 		$mod5 = intval(bcmod($number, 5));
@@ -41,7 +42,7 @@ class Multiples
 
 		for ($i = 0; $i < count(self::OPTIONS); $i++) {
 			if ($arrRemainders[$i] === 0) {
-				return (string) self::OPTIONS[$i];
+				$number = self::OPTIONS[$i];
 			}
 		}
 
