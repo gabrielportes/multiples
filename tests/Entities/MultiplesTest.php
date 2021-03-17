@@ -1,49 +1,75 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Multiples\Tests\Entities;
 
 use Multiples\Entities\Multiples;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Gabriel Portes <gabrielportesv@gmail.com>
+ * @version 1.0.0
+ */
 class MultiplesTest extends TestCase
 {
-
-    public function testIfTestMultipleReturnsInt()
+    /**
+     * Tests the method isMultipleOf.
+     *
+     * @return void
+     */
+    public function testMultipleOf(): void
     {
         $multiples = new Multiples();
-        $this->assertIsNumeric($multiples->testMultiple(1));
-        $this->assertIsNumeric($multiples->testMultiple(2));
+        $this->assertTrue($multiples->isMultipleOf(6, 3));
+        $this->assertFalse($multiples->isMultipleOf(5, 3));
     }
 
-    public function testIfTestMultipleReturnsString()
+    /**
+     * Tests if testMultiple returns the same number was send.
+     *
+     * @return void
+     */
+    public function testIfTestMultipleReturnsTheSameNumber(): void
     {
         $multiples = new Multiples();
-        $this->assertIsString($multiples->testMultiple(3));
-        $this->assertIsString($multiples->testMultiple(5));
-        $this->assertIsString($multiples->testMultiple(6));
-        $this->assertIsString($multiples->testMultiple(10));
-        $this->assertIsString($multiples->testMultiple(15));
-        $this->assertIsString($multiples->testMultiple(30));
+        $this->assertEquals(1, $multiples->testMultiple(1));
+        $this->assertEquals(2, $multiples->testMultiple(2));
+    }
+    
+    /**
+     * Tests if testMultiples returns the word 'Super'.
+     *
+     * @return void
+     */
+    public function testIfTestMultipleReturnsSuper(): void
+    {
+        $multiples = new Multiples();
+        $this->assertEquals('Super', $multiples->testMultiple(3));
+        $this->assertEquals('Super', $multiples->testMultiple(6));
     }
 
-    public function testIfTestMultipleReturnsLinio()
+    /**
+     * Tests if testMultiples returns the word 'Lógica'.
+     *
+     * @return void
+     */
+    public function testIfTestMultipleReturnsLogica(): void
     {
         $multiples = new Multiples();
-        $this->assertEquals('Linio', $multiples->testMultiple(3));
-        $this->assertEquals('Linio', $multiples->testMultiple(6));
+        $this->assertEquals('Lógica', $multiples->testMultiple(5));
+        $this->assertEquals('Lógica', $multiples->testMultiple(10));
     }
 
-    public function testIfTestMultipleReturnsIT()
+    /**
+     * Tests if testMultiples returns the word 'Superlógica'.
+     *
+     * @return void
+     */
+    public function testIfTestMultipleReturnsSuperlogica(): void
     {
         $multiples = new Multiples();
-        $this->assertEquals('IT', $multiples->testMultiple(5));
-        $this->assertEquals('IT', $multiples->testMultiple(10));
-    }
-
-    public function testIfTestMultipleReturnsLinianos()
-    {
-        $multiples = new Multiples();
-        $this->assertEquals('Linianos', $multiples->testMultiple(15));
-        $this->assertEquals('Linianos', $multiples->testMultiple(30));
+        $this->assertEquals('Superlógica', $multiples->testMultiple(15));
+        $this->assertEquals('Superlógica', $multiples->testMultiple(30));
     }
 }
