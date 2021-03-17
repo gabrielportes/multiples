@@ -8,18 +8,8 @@ namespace Multiples\Entities;
  * @author Gabriel Portes <gabrielportesv@gmail.com>
  * @version 1.0.0
  */
-class Multiples
+class MultiplesUsingSwitch
 {
-	/**
-	 * Options that I should use to print instead of the real number.
-	 * @var array
-	 */
-	const OPTIONS = [
-		'Superlógica', // multiples of 3 and 5 at same time
-		'Super', // multiples of 3
-		'Lógica' // multiples of 5
-	];
-
 	/**
 	 * Print all numbers from 1 to $to.
 	 * 
@@ -46,15 +36,16 @@ class Multiples
 	 */
 	public function testMultiple(int $number): string
 	{
-		$mod3 = $this->isMultipleOf($number, 3);
-		$mod5 = $this->isMultipleOf($number, 5);
-		$arrRemainders = [($mod3 && $mod5), $mod3, $mod5];
-
-		for ($i = 0; $i < count(self::OPTIONS); $i++) {
-			if ($arrRemainders[$i] === true) {
-				$number = self::OPTIONS[$i];
+		switch ($number) {
+			case $this->isMultipleOf($number, 3) && $this->isMultipleOf($number, 5):
+				$number = 'Superlógica';
 				break;
-			}
+			case $this->isMultipleOf($number, 3):
+				$number = 'Super';
+				break;
+			case $this->isMultipleOf($number, 5):
+				$number = 'Lógica';
+				break;
 		}
 
 		return (string) $number;

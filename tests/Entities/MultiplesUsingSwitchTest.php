@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Multiples\Tests\Entities;
 
-use Multiples\Entities\Multiples;
+use Multiples\Entities\MultiplesUsingSwitch as Multiples;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Gabriel Portes <gabrielportesv@gmail.com>
  * @version 1.0.0
  */
-class MultiplesTest extends TestCase
+class MultiplesUsingSwitchTest extends TestCase
 {
     /**
      * Tests the method isMultipleOf.
