@@ -36,7 +36,7 @@ class MultiplesTest extends TestCase
         $this->assertEquals(1, $multiples->testMultiple(1));
         $this->assertEquals(2, $multiples->testMultiple(2));
     }
-    
+
     /**
      * Tests if testMultiples returns the word 'Super'.
      *
