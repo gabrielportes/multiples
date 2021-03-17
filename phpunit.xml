@@ -7,12 +7,20 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="true"
-         stopOnFailure="false"
-         syntaxCheck="false"
+         stopOnFailure="true"
+         stopOnError="true"
+         stopOnIncomplete="true"
+         stopOnSkipped="true"
+         verbose="true"
 >
     <testsuites>
-        <testsuite name="Packge Test Suite">
+        <testsuite name="Default">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src/</directory>
+        </whitelist>
+    </filter>
 </phpunit>
