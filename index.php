@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * For this resolution I considered that it was not allowed to use even `switch case`.
  */
