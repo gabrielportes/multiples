@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Multiples\Entities;
 
 /**
- * @author Gabriel Portes <gabriel-portes@hotmail.com>
+ * @author Gabriel Portes <gabrielportesv@gmail.com>
  * @version 1.0.0
  */
 class Multiples
@@ -24,8 +24,9 @@ class Multiples
 	 * Print all numbers from 1 to $to.
 	 * 
 	 * @param int $to last number to print
+	 * @return void
 	 */
-	public function printNumbers(int $to)
+	public function printNumbers(int $to): void
 	{
 		$from = 1;
 		foreach (range($from, $to) as $number) {
